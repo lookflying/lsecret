@@ -1,6 +1,6 @@
 %h1 Listing records
 
-- if !@records.empty?
+- if !@records.empty? && user_signed_in?
   %table
     %tr
       %th Expense

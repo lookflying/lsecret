@@ -1,0 +1,29 @@
+%h1 Listing records
+
+%table
+  %tr
+    %th Day
+    %th Item
+    %th Expense
+    %th Income
+    %th Tag
+    %th Remark
+    %th
+    %th
+    %th
+
+  - @records.each do |record|
+    %tr
+      %td= record.day
+      %td= record.item
+      %td= record.expense
+      %td= record.income
+      %td= record.tag
+      %td= record.remark
+      %td= link_to 'Show', record
+      %td= link_to 'Edit', edit_record_path(record)
+      %td= link_to 'Destroy', record, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Record', new_record_path

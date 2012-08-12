@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Day:
+  = @record.day
+%p
+  %b Item:
+  = @record.item
+%p
+  %b Expense:
+  = @record.expense
+%p
+  %b Income:
+  = @record.income
+%p
+  %b Tag:
+  = @record.tag
+%p
+  %b Remark:
+  = @record.remark
+
+= link_to 'Edit', edit_record_path(@record)
+\|
+= link_to 'Back', records_path

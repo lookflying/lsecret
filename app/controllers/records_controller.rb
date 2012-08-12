@@ -14,35 +14,20 @@ class RecordsController < ApplicationController
     end
   end
 
-  # GET /records/1
-  # GET /records/1.json
   def show
     @record = Record.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @record }
-    end
   end
 
-  # GET /records/new
-  # GET /records/new.json
   def new
     @record = Record.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @record }
-    end
   end
 
-  # GET /records/1/edit
   def edit
     @record = Record.find(params[:id])
   end
-
-  # POST /records
-  # POST /records.json
+  
   def create
     @record = Record.new(params[:record])
 

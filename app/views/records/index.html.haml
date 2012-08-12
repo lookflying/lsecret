@@ -1,5 +1,16 @@
 %h1 Listing records
 
+- if !@records.empty?
+  %table
+    %tr
+      %th Expense
+      %th Income
+      %th Balance
+    %tr
+      %td= @expense
+      %td= @income
+      %td= @balance
+
 %table
   %tr
     %th Day

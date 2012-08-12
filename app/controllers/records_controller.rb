@@ -1,12 +1,16 @@
 class RecordsController < ApplicationController
-  # GET /records
-  # GET /records.json
+  before_filter :authenticate_user!, :except => [:index]
   def index
-    @records = Record.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @records }
+    if user_signed_in? 
+      @expense = Record.sum(:expense)
+      @income = Record.sum(:income)
+      @balance = @income - @expense
+      @records = Record.order(:day).reverse_order
+    else
+      @expense = Record.sum(:expense)
+      @income = Record.sum(:income)
+      @balance = @income - @expense
+      @records = Record.order(:day).reverse_order.limit(10)
     end
   end
 

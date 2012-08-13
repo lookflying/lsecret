@@ -16,7 +16,8 @@ class RecordsController < ApplicationController
       if !@fields.include? params[:order]
         redirect_to records_path(:order => :day)
       end
-      @records = Record.order(params[:order]).reverse_order
+      @records = Record.where("#{params[:order]} is not null").order(params[:order]).reverse_order
+      @records += Record.where("#{params[:order]} is null")
     else
       @expense = Record.sum(:expense)
       @income = Record.sum(:income)

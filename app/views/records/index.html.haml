@@ -13,12 +13,12 @@
 = link_to 'New Record', new_record_path
 %table
   %tr
-    %th Day
-    %th Item
-    %th Expense
-    %th Income
-    %th Tag
-    %th Remark
+    %th= link_to "Day", records_path(:order => :day)
+    %th= link_to "Item", records_path(:order => :item)
+    %th= link_to "Expense", records_path(:order => :expense)
+    %th= link_to "Income", records_path(:order => :income)
+    %th= link_to "Tag", records_path(:order => :tag)
+    %th= link_to "Remark", records_path(:order => :remark)
     %th
     %th
     %th

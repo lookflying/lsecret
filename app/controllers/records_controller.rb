@@ -5,7 +5,18 @@ class RecordsController < ApplicationController
       @expense = Record.sum(:expense)
       @income = Record.sum(:income)
       @balance = @income - @expense
-      @records = Record.order(:day).reverse_order
+      if params.has_key? :order
+        session[:order] = params[:order]
+      elsif session.has_key? :order
+        params[:order] = session[:order]
+      else
+        params[:order] = :day
+      end
+      @fields = Record.column_names
+      if !@fields.include? params[:order]
+        redirect_to records_path(:order => :day)
+      end
+      @records = Record.order(params[:order]).reverse_order
     else
       @expense = Record.sum(:expense)
       @income = Record.sum(:income)

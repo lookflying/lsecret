@@ -4,6 +4,8 @@ Secret::Application.routes.draw do
   get "stat/trend"
 
   get "stat/zui"
+  
+  get "stat" => "stat#stat"
 
   devise_for :users
 

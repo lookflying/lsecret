@@ -1,0 +1,22 @@
+%h1 List
+%table.stat.list
+  %tr
+    %th Year
+    %th Jan.
+    %th Feb.
+    %th Mar.
+    %th Apr.
+    %th May
+    %th June
+    %th July
+    %th Aug.
+    %th Sept.
+    %th Oct.
+    %th Nov.
+    %th Dec.
+  - @years.each do |year|
+    %tr
+      %td= year
+      -(1..12).each do |month|
+        %td= @month_expense.has_key?(Date.new(year, month, 1))? @month_expense[Date.new(year, month, 1)]:""
+    

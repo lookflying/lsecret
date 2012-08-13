@@ -1,5 +1,7 @@
 %h1 List
-%table.stat.list
+
+%h2 Expense
+%table.list
   %tr
     %th Year
     %th Jan.
@@ -18,5 +20,49 @@
     %tr
       %td= year
       -(1..12).each do |month|
-        %td= @month_expense.has_key?(Date.new(year, month, 1))? @month_expense[Date.new(year, month, 1)]:""
+        %td.expense= @month_expense.has_key?(Date.new(year, month, 1))? @month_expense[Date.new(year, month, 1)]:""
+        
+%h2 Balance
+%table.list
+  %tr
+    %th Year
+    %th Jan.
+    %th Feb.
+    %th Mar.
+    %th Apr.
+    %th May
+    %th June
+    %th July
+    %th Aug.
+    %th Sept.
+    %th Oct.
+    %th Nov.
+    %th Dec.
+  - @years.each do |year|
+    %tr
+      %td= year
+      -(1..12).each do |month|
+        %td.balance= @month_expense.has_key?(Date.new(year, month, 1))? @month_balance[Date.new(year, month, 1)]:""
+        
+%h2 Increment
+%table.list
+  %tr
+    %th Year
+    %th Jan.
+    %th Feb.
+    %th Mar.
+    %th Apr.
+    %th May
+    %th June
+    %th July
+    %th Aug.
+    %th Sept.
+    %th Oct.
+    %th Nov.
+    %th Dec.
+  - @years.each do |year|
+    %tr
+      %td= year
+      -(1..12).each do |month|
+        %td.increment= @month_expense.has_key?(Date.new(year, month, 1))? @month_income[Date.new(year, month, 1)] -  @month_expense[Date.new(year, month, 1)]:""
     

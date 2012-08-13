@@ -1,12 +1,12 @@
 class StatController < ApplicationController
   def average
     calc_month
-    @month_average = {}
-    @month_average[:income] = @income_sum / @month_income.size
-    @month_average[:expense] = @expense_sum / @month_expense.size
+   
   end
 
   def trend
+    @month_increment = @month_average[:income] - @month_average[:expense]
+    
   end
 
   def zui
@@ -27,11 +27,12 @@ class StatController < ApplicationController
     last = @latest.beginning_of_month
     @income_sum = @expense_sum = 0;
     @years = []
+    @month_balance[month.prev_month] = 0
     while month <= last do
       this_month = Record.where("day >= ? AND day < ?", month, month.next_month)
       @month_income[month]  = this_month.sum(:income)
       @month_expense[month] = this_month.sum(:expense)
-      @month_balance[month] = @month_income[month] - @month_expense[month]
+      @month_balance[month] = @month_balance[month.prev_month] + @month_income[month] - @month_expense[month]
       @income_sum += @month_income[month]
       @expense_sum += @month_expense[month]
       if !@years.include? month.year
@@ -39,6 +40,9 @@ class StatController < ApplicationController
       end
       month = month.next_month
     end
+    @month_average = {}
+    @month_average[:income] = @income_sum / @month_income.size
+    @month_average[:expense] = @expense_sum / @month_expense.size
   end
   
 end

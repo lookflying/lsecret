@@ -1,4 +1,10 @@
 Secret::Application.routes.draw do
+  get "stat/average"
+
+  get "stat/trend"
+
+  get "stat/zui"
+
   devise_for :users
 
   resources :records

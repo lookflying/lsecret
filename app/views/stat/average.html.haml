@@ -1,0 +1,18 @@
+%h1 Average
+
+%table.avg.month
+  %tr
+    %th
+    %th Expense
+    %th Income
+    %th Balance
+  %tr
+    %td.avg.title Month
+    %td= number_with_precision @month_average[:income], :precision => 2
+    %td= number_with_precision @month_average[:expense], :precision => 2
+    %td= number_with_precision @month_average[:income] - @month_average[:expense], :precision => 2
+  %tr
+    %td.avg.title Year
+    %td= number_with_precision @month_average[:income] * 12, :precision => 2
+    %td= number_with_precision @month_average[:expense] * 12, :precision => 2
+    %td= number_with_precision (@month_average[:income] - @month_average[:expense]) * 12, :precision => 2

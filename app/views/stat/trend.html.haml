@@ -1,2 +1,12 @@
-%h1 Stat#trend
-%p Find me in app/views/stat/trend.html.haml
+%h1 Trend
+
+%div
+  %p="Month Increment: #{number_with_precision @month_increment, :precision => 2}"
+%table
+  %tr
+    %th Milestone
+    %th Date
+  - @target.each do |key, value|
+    %tr
+      %td= key
+      %td= value

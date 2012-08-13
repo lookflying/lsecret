@@ -5,7 +5,14 @@ class StatController < ApplicationController
   end
 
   def trend
+    calc_month
     @month_increment = @month_average[:income] - @month_average[:expense]
+    @target = {}
+    digits = Math.log10(@balance)
+    first_target = (@balance / (10 ** digits.floor) + 1).floor * 10 ** digits.floor
+    @target[first_target] = @latest.advance(:months => ((first_target - @balance) / @month_increment).round)
+    next_target = 10 ** (Math.log10(first_target).floor + 1)
+    @target[next_target] = @latest.advance(:months => ((next_target - @balance) / @month_increment).round)
     
   end
 
@@ -43,6 +50,7 @@ class StatController < ApplicationController
     @month_average = {}
     @month_average[:income] = @income_sum / @month_income.size
     @month_average[:expense] = @expense_sum / @month_expense.size
+    @balance = @income_sum - @expense_sum
   end
   
 end

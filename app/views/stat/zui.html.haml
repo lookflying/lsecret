@@ -1,2 +1,13 @@
-%h1 Stat#zui
-%p Find me in app/views/stat/zui.html.haml
+%h1 ZUI
+
+%h2 Spent Most
+%table
+  %tr
+    %th Date
+    %th Item
+    %th Expense
+  - @most_day.each do |day|
+    %tr
+      %td= day.day
+      %td= day.item
+      %td= day.expense

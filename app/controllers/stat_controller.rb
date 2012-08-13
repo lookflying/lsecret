@@ -19,7 +19,7 @@ class StatController < ApplicationController
 
   def zui
     calc_month
-    
+    calc_most
   end
   
   def stat
@@ -53,6 +53,11 @@ class StatController < ApplicationController
     @month_average[:income] = @income_sum / @month_income.size
     @month_average[:expense] = @expense_sum / @month_expense.size
     @balance = @income_sum - @expense_sum
+  end
+  
+  def calc_most
+    most = Record.maximum(:expense)
+    @most_day = Record.where("expense = ?", most)
   end
   
 end

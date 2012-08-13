@@ -1,4 +1,5 @@
 class StatController < ApplicationController
+    before_filter :authenticate_user!
   def average
     calc_month
    
@@ -17,6 +18,7 @@ class StatController < ApplicationController
   end
 
   def zui
+    calc_month
     
   end
   

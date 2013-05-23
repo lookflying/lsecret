@@ -17,8 +17,7 @@ class StatController < ApplicationController
     
   end
 
-  def zui
-    calc_month
+  def top 
     calc_most
   end
   
@@ -56,7 +55,7 @@ class StatController < ApplicationController
   end
   
   def calc_most
-    most = Record.maximum(:expense)
+    most = Record.where('expense IS NOT "\N"').maximum(:expense)
     @most_day = Record.where("expense = ?", most)
   end
   

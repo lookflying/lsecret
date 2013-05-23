@@ -3,7 +3,7 @@ Secret::Application.routes.draw do
 
   get "stat/trend"
 
-  get "stat/zui"
+  get "stat/top"
   
   get "stat" => "stat#stat"
 

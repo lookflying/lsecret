@@ -1,16 +1,11 @@
 source 'http://ruby.taobao.org/'
 
-gem 'rails', '3.2.7'
+gem 'rails', '3.2.13'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-group :development, :test do
-  gem 'sqlite3'
-end
-group :production do
-  gem 'pg'
-end
+gem 'sqlite3'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -43,3 +38,5 @@ gem 'jquery-rails'
 gem 'haml'
 gem 'haml-rails'
 gem 'devise'
+gem 'therubyracer'
+
